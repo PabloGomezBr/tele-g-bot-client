@@ -8,9 +8,9 @@ function App() {
     useEffect(() => {
         let url: string;
         if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-            url = 'http://localhost:3001/';
+            url = 'http://localhost:3001/api';
         } else {
-            url = 'https://web-production-9e1b.up.railway.app';
+            url = 'https://tele-g-bot.up.railway.app/api';
         }
 
         const fetchData = async () => {

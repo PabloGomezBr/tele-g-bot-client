@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { io } from 'socket.io-client';
+import { API_ENDPOINT, ENDPOINT } from './config/config';
 
 function App() {
+    const socket = io(ENDPOINT);
     const [message, setMessage] = useState([]);
 
     useEffect(() => {
-        let url: string;
-        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-            url = 'http://localhost:3001/api';
-        } else {
-            url = 'https://tele-g-bot.up.railway.app/api';
-        }
+        socket.on('message', (data) => {
+            console.log('SOCKET: ', data)
+            setMessage(data.message);
+        });
 
         const fetchData = async () => {
             try {
-                const response = await fetch(url);
+                const response = await fetch(API_ENDPOINT);
                 console.log('raw response: ', response);
                 const json = await response.json();
-                console.log(json);
                 setMessage(json.message);
             } catch (error) {
                 console.log('error', error);
@@ -26,6 +26,9 @@ function App() {
         };
 
         fetchData();
+        return () => {
+            socket.off('message')
+        }
     }, []);
 
     return (

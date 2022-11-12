@@ -1,5 +1,7 @@
 import { IonButton, IonCard, IonCardContent, IonCardHeader } from '@ionic/react';
 
+import { ENDPOINT } from '../../config/config';
+
 import './modal.css';
 
 const Modal = ({ handleClose, show }: any) => {
@@ -19,9 +21,11 @@ const Modal = ({ handleClose, show }: any) => {
                         <li>See magic!</li>
                     </ol>
                     <ul className="instructions-list">
-                        <li>Click on "Try again" button or the message shown to refresh the app manually</li>
-                        <li>Logo in <span style={{ color: 'red' }}>red</span> means the server is down</li>
-                        <li>Logo in <span style={{ color: '#61DBFB' }}>blue</span> means the server is up</li>
+                        <li>
+                            Visit the
+                            <a href={ENDPOINT} target="_blank" rel="noreferrer"> web version </a>
+                            to chek if server is down and you don't trust my awesome implementations to auto reconnect to the server
+                        </li>
                         <li>Click down on "Tele-G-Bot" for credits</li>
                     </ul>
                     <IonButton size='small' color={'dark'} onClick={handleClose} fill="solid">Got it</IonButton>

@@ -29,3 +29,18 @@ ion-button {
 .error-logo{
     filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
 }
+
+
+.reconecting {
+    font-weight: 500;
+    animation: breath infinite 2s alternate;
+}
+
+@keyframes breath {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

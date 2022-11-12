@@ -17,19 +17,21 @@ class Message extends React.Component<{className: string}, { message: string; so
     }
 
     async componentDidMount() {
-        await this.fetchData();
         this.state.socket.on('connect', () => {
-            this.setState({ isServerUp: false });
+            this.fetchData();
+            this.setState({ isServerUp: true });
             document.getElementsByClassName('App-logo')[0].classList.remove('error-logo');
         });
-        this.state.socket.on('connect_error', (err) => {
+
+        this.state.socket.on('connect_error', () => {
             this.setState({ isServerUp: false });
             document.getElementsByClassName('App-logo')[0].classList.add('error-logo');
         });
+
         this.state.socket.on('message', (data) => {
             this.setState({ message: data.message });
         });
-
+        await this.fetchData();
         return () => this.state.socket.close();
     }
 
@@ -56,22 +58,20 @@ class Message extends React.Component<{className: string}, { message: string; so
                 return (
                     <div>
                         {this.state.message !== '' ? (
-                            <div>
-                                <p onClick={() => this.fetchData()}>
-                                    {this.state.message}
-                                </p>
-                            </div>
-                        ) : (
                             <p>
-                                <IonButton className="try-btn" onClick={() => this.fetchData()}>Try again</IonButton>
+                                {this.state.message}
+                            </p>
+                        ) : (
+                            <p className='reconecting'>
+                                Reconecting...
                             </p>
                         )}
                     </div>
                 );
             }
             return (
-                <p>
-                    <IonButton onClick={() => this.fetchData()} fill="outline">Try again</IonButton>
+                <p className='reconecting'>
+                    Reconecting...
                 </p>
             );
         }

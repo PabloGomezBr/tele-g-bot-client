@@ -23,6 +23,10 @@
     padding-bottom: 5px;
 }
 
+ul.instructions-list {
+    margin-top: 15px;
+}
+
 ul.instructions-list > li {
     font-size: 0.7em;
 }

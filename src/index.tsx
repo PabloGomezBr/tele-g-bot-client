@@ -1,10 +1,10 @@
+import { setupIonicReact } from '@ionic/react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-import { setupIonicReact } from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -22,19 +22,18 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
-    );
-    root.render(
+);
+root.render(
     <React.StrictMode>
         <App />
-  </React.StrictMode>
+    </React.StrictMode>
 );
 
 setupIonicReact({
     mode: 'md'
-})
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
